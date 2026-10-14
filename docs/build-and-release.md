@@ -44,7 +44,15 @@ Resolve errors and complete the manual checks in `docs/testing.md` before creati
 
 ## 4. Build the executable
 
-Run the build on Windows, from the repository root:
+PyInstaller's own guidance recommends verifying an application in one-folder mode before switching to a single-file build. This makes missing dependency problems easier to diagnose. First build a temporary one-folder package:
+
+```powershell
+python -m PyInstaller --noconfirm --clean --onedir --windowed --name TetrisGameExample-Check main.py
+```
+
+Launch `dist\\TetrisGameExample-Check\\TetrisGameExample-Check.exe` and confirm it works. Once that package passes the gameplay checks, create the requested single-file release.
+
+Run the final build on Windows, from the repository root:
 
 ```powershell
 python -m PyInstaller --noconfirm --clean --onefile --windowed --name TetrisGameExample main.py
